@@ -35,7 +35,7 @@ if (MSVC)
     target_link_options(cstack PRIVATE ${MSVC_FLAGS})
     if (WITH_TEST)
         target_compile_options(cstack_test PRIVATE /fsanitize=address)
-        #target_compile_definitions(cstack_test PRIVATE _DISABLE_STRING_ANNOTATION)#LNK4300	ignoring '/INCREMENTAL' because input module contains ASAN metadata
+        target_compile_definitions(cstack_test PRIVATE _DISABLE_STRING_ANNOTATION)
         target_compile_definitions(cstack_test PRIVATE _DISABLE_VECTOR_ANNOTATION)
     endif()
 else()
