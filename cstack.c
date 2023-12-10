@@ -21,12 +21,12 @@ typedef struct stack_entry
 
 typedef struct stack_entries_table
 {
-	unsigned int size;
 	stack_entry_t* entries[INIT_SIZE];
+	unsigned int size;
 } stack_entries_table;
 #pragma pack(pop)
 
-stack_entries_table g_table = { 0u, NULL };
+stack_entries_table g_table = { NULL };
 
 hstack_t stack_new(void) {
 	if (g_table.size == INIT_SIZE - 1)
@@ -53,6 +53,7 @@ void stack_free(const hstack_t hstack) {
 		stack_t* current = stack->entry;
 		while (current) {
 			prev = current->prev;
+			free(current->data);
 			free(current);
 			current = prev;
 		}
